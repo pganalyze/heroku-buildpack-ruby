@@ -814,6 +814,7 @@ BUNDLE
         bundle_command << "BUNDLE_DEPLOYMENT=#{ENV["BUNDLE_DEPLOYMENT"]} " if ENV["BUNDLE_DEPLOYMENT"] # Unset on windows since we delete the Gemfile.lock
         bundle_command << "BUNDLE_GLOBAL_PATH_APPENDS_RUBY_SCOPE=#{ENV["BUNDLE_GLOBAL_PATH_APPENDS_RUBY_SCOPE"]} " if bundler.needs_ruby_global_append_path?
         bundle_command << "bundle install -j4"
+        bundle_command << "bundle install -j4" # second install due to bundler-path-build-ext plugin limitations
 
         topic("Installing dependencies using bundler #{bundler.version}")
 
