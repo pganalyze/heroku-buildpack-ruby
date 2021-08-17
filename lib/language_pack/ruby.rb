@@ -846,6 +846,8 @@ BUNDLE
           instrument "ruby.bundle_install" do
             bundle_time = Benchmark.realtime do
               bundler_output << pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
+              # second install due to bundler-path-build-ext plugin limitations
+              bundler_output << pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
             end
           end
         end
